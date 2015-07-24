@@ -23,11 +23,11 @@ The columns are
 * Activity, which is a factor variable of 6 possible values
 
 >1 WALKING                                                                
->2 WALKING_UPSTAIRS
->3 WALKING_DOWNSTAIRS
->4 SITTING
->5 STANDING
->6 LAYING
+2 WALKING_UPSTAIRS
+3 WALKING_DOWNSTAIRS
+4 SITTING
+5 STANDING
+6 LAYING
 
 * Subject, which is a numeric variable, with possible values from 1 to 30.
 * Other 66 variables, according to original scheme:
