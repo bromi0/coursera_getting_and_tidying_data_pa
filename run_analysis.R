@@ -5,6 +5,7 @@
 
 # 0. load librarys
 library(dplyr)
+library(reshape2)
 
 # 1. Read data and merge sets
 
@@ -53,4 +54,29 @@ small_dataset <- select(dataset, matches("subject|activity|mean\\.|std\\.", igno
 # from activity_labels.txt, read into table in tbl_labels
 small_dataset[[2]] <- factor(dataset[[2]], labels=tbl_labels$V2)
 
+# 4. Label the data
+# The data is already labeled in p.1.2 during the reading.
 
+# 5. From the data set, create a second, independent tidy dataset with 
+# average of each variable for each activity and each subject
+# we use the summarise_each from dplyr, essentiale the summarise
+# function for all non-grouped variables in this context.
+
+# the assignment says 'for each activity and each subject'
+# so i've changed the order to following:
+# 1st grouping column is Activity
+# 2nd grouping column is Subject.
+# if needed, you can easily change the order of grouping in the
+# next formula
+
+melted <- melt(small_dataset,id.vars = c("subject","activity"))
+tidy_set <- dcast(melted,
+                  activity + subject ~ variable ,
+                  fun.aggregate = mean)
+
+# The alternative variant using dplyr, not reshape.
+# It is faster, but requires careful use due to NSE (read about it,
+# it will save your time in the future)
+#groups <- list(~subject, ~activity)
+#grouped_set <- group_by_(small_dataset, .dots = groups)
+#tidy_set <- summarise_each(grouped_set, c("mean"))
