@@ -2,17 +2,11 @@
 
 ## 1. The data description
 The dataset created by running 'run_analysis.R' script is a cleaned and prepared data from
+
 Human Activity Recognition Using Smartphones Dataset
 Version 1.0
-==================================================================
-Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
-Smartlab - Non Linear Complex Systems Laboratory
-DITEN - Universita degli Studi di Genova.
-Via Opera Pia 11A, I-16145, Genoa, Italy.
-activityrecognition@smartlab.ws
 www.smartlab.ws
-==================================================================
-[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
 
 The original dataset contained data from experiment with measuring human activities using
 accelerometers and gyroscopes inside Samsung smartphones. The multiple measurement were made
@@ -27,12 +21,14 @@ The result tidy dataset is in wide format, contains 180 observations of 68 varia
 
 The columns are
 * Activity, which is a factor variable of 6 possible values
+
 >1 WALKING                                                                
 >2 WALKING_UPSTAIRS
 >3 WALKING_DOWNSTAIRS
 >4 SITTING
 >5 STANDING
 >6 LAYING
+
 * Subject, which is a numeric variable, with possible values from 1 to 30.
 * Other 66 variables, according to original scheme:
 
