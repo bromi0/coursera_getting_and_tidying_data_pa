@@ -48,7 +48,15 @@ colnames(dataset)[1:2] <- c("subject", "activity")
 # be syntactical valid, our names will have dots in the tail.
 # We need it to exclude variables like meanFreq
 
-small_dataset <- select(dataset, matches("subject|activity|mean\\.|std\\.", ignore.case=TRUE))
+small_dataset  <- select(dataset, 
+                         c(1, 2, # the subject and activity columns
+# and the regular expression for mean() or std() in the variable name
+# the reason why we don't do grep on the column.names themselves
+# is that the variable name in R doesn't allow for parenthesis,
+# so the read.table changes those into dots, and then we have 'bad'
+# variables whose names match pattern. +2 exists because of additional
+# preceding columns in our dataset.
+                          which(grepl("mean\\(\\)|std\\(\\)", tbl_features$V2)) + 2))
 
 # 3. Transform numerical activity code into factor with names
 # from activity_labels.txt, read into table in tbl_labels
