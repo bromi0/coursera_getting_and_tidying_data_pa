@@ -88,3 +88,6 @@ tidy_set <- dcast(melted,
 #groups <- list(~subject, ~activity)
 #grouped_set <- group_by_(small_dataset, .dots = groups)
 #tidy_set <- summarise_each(grouped_set, c("mean"))
+
+# 6. Export data into text file
+write.table (tidy_set, file="tidy.txt", row.names = FALSE)
