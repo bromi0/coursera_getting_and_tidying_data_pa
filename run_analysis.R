@@ -24,6 +24,9 @@ test_set_subjects_file_name <- "./UCI HAR Dataset/test/subject_test.txt"
 test_set_file_name <- "./UCI HAR Dataset/test/X_test.txt"
 test_set_activity_file_name <- "./UCI HAR Dataset/test/y_test.txt"
 
+# this is looking up classes for big speedup to read.table
+train_set_classes = sapply(read.table(train_set_file_name, nrows=5), class)
+test_set_classes = sapply(read.table(test_set_file_name, nrows=5), class)
 # We cbind subject IDs with activity IDs with data and label them
 # according to 1.1 lables
 dataset <- 
@@ -31,16 +34,17 @@ dataset <-
                 cbind(
                         read.table(train_set_subjects_file_name),
                         read.table(train_set_activtiy_file_name),
-                        read.table(train_set_file_name, 
+                        read.table(train_set_file_name, colClasses = train_set_classes,
                                    col.names = tbl_features$V2)
                 ),
                 cbind(
                         read.table(test_set_subjects_file_name),
                         read.table(test_set_activity_file_name),
-                        read.table(test_set_file_name,
+                        read.table(test_set_file_name, colClasses = test_set_classes,
                                    col.names = tbl_features$V2)
                 )
         )
+remove(train_set_classes, test_set_classes)
 colnames(dataset)[1:2] <- c("subject", "activity")
 
 # 2. Select only columns which have 'mean' or 'std' in label:
